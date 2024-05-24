@@ -112,7 +112,10 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->formatStateUsing(function ($record) {
+                        return Str::limit($record->name, 30, '...');
+                    }),
                 Tables\Columns\TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),
