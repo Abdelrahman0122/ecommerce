@@ -72,7 +72,7 @@ class ProductResource extends Resource
                         TextInput::make('price')
                             ->numeric()
                             ->required()
-                            ->prefix('USD')
+                            ->prefix('EGP')
                     ]),
                     Section::make('Associations')->schema([
                         Select::make('category_id')
@@ -123,7 +123,7 @@ class ProductResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
-                    ->money('USD')
+                    ->money('EGP')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean(),

@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Number;
 use Filament\Forms\Components\Hidden;
+use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
 
 class OrderResource extends Resource
 {
@@ -167,7 +168,7 @@ class OrderResource extends Resource
                                     $total += $get("items.{$key}.total_amount");
                                 }
                                 $set('total', $total);
-                                return Number::currency($total, 'USD');
+                                return Number::currency($total, 'EGP');
                             }),
                         Hidden::make('total')
                             ->default(0),
@@ -190,7 +191,7 @@ class OrderResource extends Resource
                 TextColumn::make('total')
                     ->numeric()
                     ->sortable()
-                    ->money('USD'),
+                    ->money('EGP'),
                 TextColumn::make('payment_method')
                     ->searchable()
                     ->sortable(),
@@ -239,7 +240,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            \App\Filament\Resources\OrderResourcResource\RelationManagers\AddressRelationManager::class,
         ];
     }
 

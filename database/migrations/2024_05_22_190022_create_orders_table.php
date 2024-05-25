@@ -17,7 +17,7 @@ return new class extends Migration
             $table->decimal('total', 10, 2);
             $table->string('payment_method')->nullable();
             $table->string('payment_status')->nullable();
-            $table->enum('status', ['new', 'processing', 'shipped', 'delivers', 'canceled'])->default('new');
+            $table->enum('status', ['new', 'processing', 'shipped', 'delivered', 'canceled'])->default('new');
             $table->string('currency')->nullable();
             $table->string('shipping_method')->nullable();
             $table->decimal('shipping_amount', 10, 2)->nullable();
