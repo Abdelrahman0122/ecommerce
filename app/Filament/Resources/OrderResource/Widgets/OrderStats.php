@@ -14,7 +14,7 @@ class OrderStats extends BaseWidget
         return [
             Stat::make('New Orders', Order::query()->where('status', 'new')->count()),
             Stat::make('Order Processing', Order::query()->where('status', 'processing')->count()),
-            Stat::make('Order Shipped', Order::query()->where('status', 'shipped')->count()),
+            Stat::make('Order Delivered ', Order::query()->where('status', 'Delivered')->count()),
             Stat::make('Total Price for Delivered Orders', Number::currency(Order::query()
             ->where('status', 'delivered')->sum('total'), 'EGP')),
         ];

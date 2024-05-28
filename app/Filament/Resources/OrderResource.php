@@ -3,11 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
-use App\Filament\Resources\OrderResource\RelationManagers;
+
 use App\Models\Order;
 use App\Models\Product;
-use Doctrine\DBAL\Schema\Schema;
-use Filament\Forms;
+
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Placeholder;
 use Filament\Forms\Components\Repeater;
@@ -24,17 +23,16 @@ use Filament\Tables;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 use Illuminate\Support\Number;
 use Filament\Forms\Components\Hidden;
-use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
 
 class OrderResource extends Resource
 {
     protected static ?string $model = Order::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-shopping-bag';
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
@@ -246,7 +244,7 @@ class OrderResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return Order::getModel()->count();
+        return Order::where('status', 'new')->count();
     }
 
     public static function getPages(): array
